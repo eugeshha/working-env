@@ -30,9 +30,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run lint
+          cache: 'yarn'
+      - run: yarn
+      - run: yarn lint
 
   test:
     runs-on: ubuntu-latest
@@ -42,33 +42,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
-          cache: 'npm'
-      - run: npm ci
-      - run: npm test
+          cache: 'yarn'
+      - run: yarn
+      - run: yarn test
 
   build:
     needs: [eslint, test]
-    runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22.14.0
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist-files
-          path: dist/
-
-  deploy:
-    needs: [build]
-    # Деплой только из main ветки
-    if: github.ref == 'refs/heads/main'
-    
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -77,11 +57,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
+      - uses: actions/setup-node@v4
         with:
-          name: dist-files
-          path: dist/
+          node-version: 22.14.0
+          cache: 'yarn'
+      - run: yarn
+      - run: yarn build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
