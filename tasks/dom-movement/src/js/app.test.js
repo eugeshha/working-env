@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import Game from "./app";
 
 describe("Game", () => {
