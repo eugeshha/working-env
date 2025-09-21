@@ -1,11 +1,13 @@
 ![CI](https://github.com/eugeshha/working-env/actions/workflows/web.yml/badge.svg)
 
-# Webpack5
-
-[Руководство по настройке Webpack](https://webpack.js.org/guides/)
-[Руководство по настройке GitHub Actions](https://docs.github.com/en/actions/quickstart)
+# Webpack5 - Рабочая среда для JavaScript
 
 
-# Перейти на страницу для тестов
+## 📚 Домашние задания
 
-[Веб](https://eugeshha.github.io/working-env/)
+В папке `tasks/` размещены выполненные домашние задания по курсу "JavaScript в браузере":
+
+### 🎮 [DOM - Перемещение элемента](./tasks/dom-movement/)
+Игра "Поймай гнома" с перемещающимся персонажем на игровом поле 4x4.  
+**Демо:** [Играть онлайн](https://eugeshha.github.io/working-env/tasks/dom-movement/)
+
