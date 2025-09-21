@@ -4,3 +4,8 @@
 
 [Руководство по настройке Webpack](https://webpack.js.org/guides/)
 [Руководство по настройке GitHub Actions](https://docs.github.com/en/actions/quickstart)
+
+
+# Перейти на страницу для тестов
+
+[Веб](https://eugeshha.github.io/working-env/)
