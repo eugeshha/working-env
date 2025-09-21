@@ -48,11 +48,6 @@ jobs:
 
   build:
     needs: [eslint, test]
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
 
     steps:
@@ -63,6 +58,26 @@ jobs:
           cache: 'yarn'
       - run: yarn
       - run: yarn build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-${{ github.ref_name }}
+          path: dist/
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-${{ github.ref_name }}
+          path: dist/
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
